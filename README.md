@@ -34,9 +34,34 @@ NOTE: Include any configuration files in this repository, make sure to avoid add
 1. Java 8
 2. Javalin (Jetty Server)
 3. JDBC
-2. PostgresSQL
-3. Docker 
-4. Docker Compose 
-5. Prometheus 
-6. Grafana 
-7. Any 3rd Party Plugins as required
+4. PostgresSQL
+5. Docker 
+6. Docker Compose 
+7. Prometheus 
+8. Grafana 
+9. Any 3rd Party Plugins as required
+
+## User Stories
+* ERS
+    * Rejects invalid requests
+        negative amounts
+        unauthenticated users cannot make requests or access anything
+
+* Employees
+    * Login
+    * Logout
+  * Submit reimbursement requests
+    * lodging, travel, food, other
+        amount
+    * View past requests
+    * View pending requests
+
+* F. Managers
+  * login
+  * logout
+  * view all (active?) reimbursement requests
+  * view request history for all employees (including pending?)
+  * view particular user history
+  * approve a request
+  * deny a request
+	
