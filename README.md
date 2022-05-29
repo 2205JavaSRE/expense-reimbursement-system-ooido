@@ -23,7 +23,7 @@
 1. Functionality should reflect the below user stories.
 2. Data is stored in a database.
 3. Data Access is performed through the use of JDBC in a data layer consisting of Data Access Objects.
-4. The API is REST based, following as many of the RESTful constraints as appropriate
+4. The API is REST based, fodllowing as many of the RESTful constraints as appropriate
 5. The application is containerized and running on a docker compose network
 6. Applications and systems are monitored using Prometheus and Grafana 
 
@@ -44,17 +44,17 @@ NOTE: Include any configuration files in this repository, make sure to avoid add
 ## User Stories
 * ERS
     * Rejects invalid requests
-        negative amounts
-        unauthenticated users cannot make requests or access anything
+        * negative amounts
+        * unauthenticated users cannot make requests or access anything
 
 * Employees
-    * Login
-    * Logout
+  * Login
+  * Logout
   * Submit reimbursement requests
     * lodging, travel, food, other
-        amount
-    * View past requests
-    * View pending requests
+      amount
+  * View past requests
+  * View pending requests
 
 * F. Managers
   * login
