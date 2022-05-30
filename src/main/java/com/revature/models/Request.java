@@ -3,17 +3,17 @@ package com.revature.models;
 public class Request {
     private int requestID;
     private int employeeID;
-    private boolean approved; //if it's pending, unapproved. maybe an int sos there's pending, approved, unapproved?
+    private Status approvalStatus; //if it's pending, unapproved. maybe an int sos there's pending, approved, unapproved? || maybe a custom enum type?
     private double amount;
-    private int type; //0 = lodging, 1 = travel, 2 = food, 3 = other
+    private String type; // lodging, travel, food, other
 
     public Request(){
 
     }
-    public Request(int requestID, int employeeID, boolean approved, double amount, int type) {
+    public Request(int requestID, int employeeID, Status approvalStatus, double amount, String type) {
         this.requestID = requestID;
         this.employeeID = employeeID;
-        this.approved = approved;
+        this.approvalStatus = approvalStatus;
         this.amount = amount;
         this.type = type;
     }
@@ -34,12 +34,12 @@ public class Request {
         this.employeeID = employeeID;
     }
 
-    public boolean isApproved() {
-        return approved;
+    public Status getApprovalStatus() {
+        return approvalStatus;
     }
 
-    public void setApproved(boolean approved) {
-        this.approved = approved;
+    public void setApprovalStatus(Status approvalStatus) {
+        this.approvalStatus = approvalStatus;
     }
 
     public double getAmount() {
@@ -50,11 +50,11 @@ public class Request {
         this.amount = amount;
     }
 
-    public int getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(String type) {
         this.type = type;
     }
 
@@ -63,9 +63,9 @@ public class Request {
         return "Request{" +
                 "requestID=" + requestID +
                 ", employeeID=" + employeeID +
-                ", approved=" + approved +
+                ", approvalStatus=" + approvalStatus +
                 ", amount=" + amount +
-                ", type=" + type +
+                ", type='" + type + '\'' +
                 '}';
     }
 }
