@@ -3,19 +3,29 @@ package com.revature.models;
 public class Request {
     private int requestID;
     private int employeeID;
-    private Status approvalStatus; //if it's pending, unapproved. maybe an int sos there's pending, approved, unapproved? || maybe a custom enum type?
+    private RequestStatus requestStatus; //if it's pending, unapproved. maybe an int sos there's pending, approved, unapproved? || maybe a custom enum requestType?
     private double amount;
-    private String type; // lodging, travel, food, other
+    private RequestType requestType; // lodging, travel, food, other
 
     public Request(){
 
     }
-    public Request(int requestID, int employeeID, Status approvalStatus, double amount, String type) {
+    public Request(double amount, RequestType requestType) {
+        this.amount = amount;
+        this.requestType = requestType;
+    }
+    public Request( int employeeID, RequestStatus requestStatus, double amount, RequestType requestType) {
+        this.employeeID = employeeID;
+        this.requestStatus = requestStatus;
+        this.amount = amount;
+        this.requestType = requestType;
+    }
+    public Request(int requestID, int employeeID, RequestStatus requestStatus, double amount, RequestType requestType) {
         this.requestID = requestID;
         this.employeeID = employeeID;
-        this.approvalStatus = approvalStatus;
+        this.requestStatus = requestStatus;
         this.amount = amount;
-        this.type = type;
+        this.requestType = requestType;
     }
 
     public int getRequestID() {
@@ -34,12 +44,12 @@ public class Request {
         this.employeeID = employeeID;
     }
 
-    public Status getApprovalStatus() {
-        return approvalStatus;
+    public RequestStatus getRequestStatus() {
+        return requestStatus;
     }
 
-    public void setApprovalStatus(Status approvalStatus) {
-        this.approvalStatus = approvalStatus;
+    public void setRequestStatus(RequestStatus approvalStatus) {
+        this.requestStatus = approvalStatus;
     }
 
     public double getAmount() {
@@ -50,12 +60,12 @@ public class Request {
         this.amount = amount;
     }
 
-    public String getType() {
-        return type;
+    public RequestType getRequestType() {
+        return requestType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setRequestType(RequestType requestType) {
+        this.requestType = requestType;
     }
 
     @Override
@@ -63,9 +73,9 @@ public class Request {
         return "Request{" +
                 "requestID=" + requestID +
                 ", employeeID=" + employeeID +
-                ", approvalStatus=" + approvalStatus +
+                ", approvalStatus=" + requestStatus +
                 ", amount=" + amount +
-                ", type='" + type + '\'' +
+                ", requestType='" + requestType + '\'' +
                 '}';
     }
 }

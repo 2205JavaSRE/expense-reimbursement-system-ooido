@@ -1,16 +1,32 @@
 package com.revature.models;
 
+import java.util.ArrayList;
+
 public class Employee {
     private String username;
     private String password;
-    private String employeeID;
+    private Integer employeeID;
+    private boolean isManager;
+
+    private ArrayList<Request> requests;
 
     public Employee(){}
-    public Employee(String username, String password, String employeeID) {
+
+    public Employee(String username, String password, Integer employeeID, boolean isManager) {
         this.username = username;
         this.password = password;
         this.employeeID = employeeID;
+        this.isManager = isManager;
     }
+
+    public Employee(String username, String password, Integer employeeID, boolean isManager, ArrayList<Request> requests) {
+        this.username = username;
+        this.password = password;
+        this.employeeID = employeeID;
+        this.isManager = isManager;
+        this.requests = requests;
+    }
+
 
     public String getUsername() {
         return username;
@@ -28,12 +44,19 @@ public class Employee {
         this.password = password;
     }
 
-    public String getEmployeeID() {
+    public Integer getEmployeeID() {
         return employeeID;
     }
 
-    public void setEmployeeID(String employeeID) {
+    public void setEmployeeID(Integer employeeID) {
         this.employeeID = employeeID;
+    }
+
+    public boolean isManager() {
+        return isManager;
+    }
+    public void setManager(boolean manager) {
+        isManager = manager;
     }
 
     @Override
@@ -41,7 +64,9 @@ public class Employee {
         return "Employee{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", employeeID='" + employeeID + '\'' +
+                ", employeeID=" + employeeID +
+                ", isManager=" + isManager +
+                ", requests=" + requests +
                 '}';
     }
 }
