@@ -27,34 +27,32 @@ public class UserController {
     }
 
     public void logout(Context ctx){
-        ctx.consumeSessionAttribute("Employee");
+        //ctx.consumeSessionAttribute("Employee");
+        ctx.req.getSession().invalidate();
         //System.out.println("consumed");
     }
 
-    public ArrayList<Request> getPendingRequestsByUserID(Context ctx) {
+    public void getPendingRequestsForUser(Context ctx) {
 
         Employee employee = ctx.sessionAttribute("Employee");
 
-        if(employee != null && employee.isManager()){
+        if(employee != null){
             ctx.json(uService.getPendingRequestsByUserID(employee.getEmployeeID()));
             ctx.status(200);
         } else{
             ctx.status(401);
         }
 
-        return null;
     }
 
-    public ArrayList<Request> getAllRequestByUserID(Context ctx) {
+    public void getAllRequestsForUser(Context ctx) {
         Employee employee = ctx.sessionAttribute("Employee");
 
-        if(employee != null && employee.isManager()){
+        if(employee != null){
             ctx.json(uService.getAllRequestsByUserID(employee.getEmployeeID()));
             ctx.status(200);
         } else{
             ctx.status(401);
         }
-
-        return null;
     }
 }
