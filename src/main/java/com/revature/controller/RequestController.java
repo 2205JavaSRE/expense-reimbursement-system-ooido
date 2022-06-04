@@ -7,6 +7,8 @@ import com.revature.service.RequestService;
 import com.revature.service.UserService;
 import io.javalin.http.Context;
 
+import java.util.ArrayList;
+
 public class RequestController {
     RequestService rService = new RequestService();
     public void request(Context ctx){
@@ -65,4 +67,27 @@ public class RequestController {
         }
     }
 
+    public void getPendingRequests(Context ctx){
+        Employee employee = ctx.sessionAttribute("Employee");
+
+        if(employee != null && employee.isManager()){
+            ctx.json(rService.getPendingRequests());
+            ctx.status(200);
+        } else{
+            ctx.status(401);
+        }
+
+    }
+
+    public void getAllRequests(Context ctx) {
+        Employee employee = ctx.sessionAttribute("Employee");
+
+        if(employee != null && employee.isManager()){
+            ctx.json(rService.getAllRequests());
+            ctx.status(200);
+        } else{
+            ctx.status(401);
+        }
+
+    }
 }

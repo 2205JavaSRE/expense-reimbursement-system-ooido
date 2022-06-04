@@ -32,19 +32,19 @@ public class RequestMapper {
         });
 
         app.get("/requests", ctx -> {  // get all pending requests
-
+            rControl.getPendingRequests(ctx);
         });
 
         app.get("/requests/history", ctx -> { // get all denied/approved/pending requests
-
+            rControl.getAllRequests(ctx);
         });
 
         app.get("/employee/requests", ctx -> { // get all pending requests for a user
-
+            uControl.getPendingRequestsByUserID(ctx);
         });
 
         app.get("/employee/requests/history", ctx -> { // get all denied/approved/pending requests for a user
-
+            uControl.getAllRequestByUserID(ctx);
         });
 
     }

@@ -43,8 +43,7 @@ public class RequestDao implements RequestDaoInterface{
 
         Connection connection = ConnectionFactory.getConnection();
 
-        //try with resources, can be used with anything that implements AutoClosable, e.g. a connection.
-        try(PreparedStatement ps = connection.prepareStatement(sql)){ //connection will be closed after we are done!
+        try(PreparedStatement ps = connection.prepareStatement(sql)){
 
             ps.setInt(1, request.getRequestStatus().ordinal());
             ps.setInt(2, request.getRequestID());
@@ -60,8 +59,7 @@ public class RequestDao implements RequestDaoInterface{
     @Override
     public Request getRequestByID(int requestID) {
         String sql = "select * from project1.Requests where request_id = ?";
-        //select * from project1.Employees a left join project1.Managers b using(user_id) where username = ?;
-        //select * from ((select user_id,username,pass from Employees) union (select user_id,username,pass from Customers)) as dt where username = 'testEmployee1';
+
         Connection connection = ConnectionFactory.getConnection();
         Request request = null;
 
@@ -85,22 +83,105 @@ public class RequestDao implements RequestDaoInterface{
     }
 
     @Override
-    public ArrayList<Request> getPastRequestsByUserID(int userID) {
-        return null;
+    public ArrayList<Request> getAllRequestsByUserID(int userID) {
+
+        String sql = "select * from project1.Requests where user_id = ?";
+        Connection connection = ConnectionFactory.getConnection();
+
+        ArrayList<Request> requests = new ArrayList<>();
+        //int requestID, int employeeID, RequestStatus requestStatus, double amount, RequestType requestType
+        try(PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setInt(1, userID);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                int requestID = rs.getInt("request_id");
+                int employeeID = rs.getInt("user_id");
+                RequestStatus requestStatus = RequestStatus.fromOrdinal(rs.getInt("status"));
+                double amount = rs.getDouble("amount");
+                RequestType requestType = RequestType.fromOrdinal(rs.getInt("type"));
+                requests.add(new Request(requestID, employeeID, requestStatus, amount, requestType));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return requests;
     }
 
     @Override
     public ArrayList<Request> getPendingRequestsByUserID(int userID) {
-        return null;
+
+        String sql = "select * from project1.Requests where user_id = ? and status = ?";
+        Connection connection = ConnectionFactory.getConnection();
+
+        ArrayList<Request> requests = new ArrayList<>();
+        //int requestID, int employeeID, RequestStatus requestStatus, double amount, RequestType requestType
+        try(PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setInt(1, userID);
+            ps.setInt(2, RequestStatus.PENDING.ordinal());
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                int requestID = rs.getInt("request_id");
+                int employeeID = rs.getInt("user_id");
+                RequestStatus requestStatus = RequestStatus.fromOrdinal(rs.getInt("status"));
+                double amount = rs.getDouble("amount");
+                RequestType requestType = RequestType.fromOrdinal(rs.getInt("type"));
+                requests.add(new Request(requestID, employeeID, requestStatus, amount, requestType));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return requests;
+
     }
 
     @Override
-    public ArrayList<Request> getPastRequests() {
-        return null;
+    public ArrayList<Request> getAllRequests() {
+        String sql = "select * from project1.Requests";
+        Connection connection = ConnectionFactory.getConnection();
+
+        ArrayList<Request> requests = new ArrayList<>();
+        //int requestID, int employeeID, RequestStatus requestStatus, double amount, RequestType requestType
+        try(PreparedStatement ps = connection.prepareStatement(sql)){
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                int requestID = rs.getInt("request_id");
+                int employeeID = rs.getInt("user_id");
+                RequestStatus requestStatus = RequestStatus.fromOrdinal(rs.getInt("status"));
+                double amount = rs.getDouble("amount");
+                RequestType requestType = RequestType.fromOrdinal(rs.getInt("type"));
+                requests.add(new Request(requestID, employeeID, requestStatus, amount, requestType));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return requests;
     }
 
     @Override
     public ArrayList<Request> getPendingRequests() {
-        return null;
+        String sql = "select * from project1.Requests where status = ?";
+        Connection connection = ConnectionFactory.getConnection();
+
+        ArrayList<Request> requests = new ArrayList<>();
+        //int requestID, int employeeID, RequestStatus requestStatus, double amount, RequestType requestType
+        try(PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setInt(1, RequestStatus.PENDING.ordinal());
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                int requestID = rs.getInt("request_id");
+                int employeeID = rs.getInt("user_id");
+                RequestStatus requestStatus = RequestStatus.fromOrdinal(rs.getInt("status"));
+                double amount = rs.getDouble("amount");
+                RequestType requestType = RequestType.fromOrdinal(rs.getInt("type"));
+                requests.add(new Request(requestID, employeeID, requestStatus, amount, requestType));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return requests;
     }
 }

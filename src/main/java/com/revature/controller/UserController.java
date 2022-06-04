@@ -1,7 +1,10 @@
 package com.revature.controller;
 import com.revature.models.Employee;
+import com.revature.models.Request;
 import io.javalin.http.Context;
 import com.revature.service.UserService;
+
+import java.util.ArrayList;
 
 
 public class UserController {
@@ -26,5 +29,32 @@ public class UserController {
     public void logout(Context ctx){
         ctx.consumeSessionAttribute("Employee");
         //System.out.println("consumed");
+    }
+
+    public ArrayList<Request> getPendingRequestsByUserID(Context ctx) {
+
+        Employee employee = ctx.sessionAttribute("Employee");
+
+        if(employee != null && employee.isManager()){
+            ctx.json(uService.getPendingRequestsByUserID(employee.getEmployeeID()));
+            ctx.status(200);
+        } else{
+            ctx.status(401);
+        }
+
+        return null;
+    }
+
+    public ArrayList<Request> getAllRequestByUserID(Context ctx) {
+        Employee employee = ctx.sessionAttribute("Employee");
+
+        if(employee != null && employee.isManager()){
+            ctx.json(uService.getAllRequestsByUserID(employee.getEmployeeID()));
+            ctx.status(200);
+        } else{
+            ctx.status(401);
+        }
+
+        return null;
     }
 }

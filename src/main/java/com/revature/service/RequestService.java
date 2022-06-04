@@ -5,6 +5,8 @@ import com.revature.dao.UserDao;
 import com.revature.models.Request;
 import com.revature.models.RequestStatus;
 
+import java.util.ArrayList;
+
 public class RequestService {
     RequestDao rDao = new RequestDao();
 
@@ -24,4 +26,11 @@ public class RequestService {
         return rDao.getRequestByID(requestID);
     }
 
+    public ArrayList<Request> getPendingRequests() {
+        return rDao.getPendingRequests();
+    }
+
+    public ArrayList<Request> getAllRequests() {
+        return rDao.getAllRequests();
+    }
 }
