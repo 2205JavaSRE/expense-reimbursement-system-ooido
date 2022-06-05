@@ -1,7 +1,6 @@
 package com.revature.service;
 
 import com.revature.dao.RequestDao;
-import com.revature.dao.UserDao;
 import com.revature.models.Request;
 import com.revature.models.RequestStatus;
 

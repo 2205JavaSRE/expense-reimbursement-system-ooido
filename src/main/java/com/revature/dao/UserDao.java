@@ -17,15 +17,14 @@ public class UserDao implements UserDaoInterface{
 
         Connection connection = ConnectionFactory.getConnection();
 
-        //try with resources, can be used with anything that implements AutoClosable, e.g. a connection.
-        try(PreparedStatement ps = connection.prepareStatement(sql)){ //connection will be closed after we are done!
+
+        try(PreparedStatement ps = connection.prepareStatement(sql)){
 
             ps.setString(1, employee.getUsername());
             ps.setString(2, employee.getPassword());
-            //ps.setBoolean(3, false);
-            //System.out.println("oh shit: " + user.getUsername() + user.getPassword());
-            ps.execute(); //We use execute when we DONT expect anything back
-            //ps.executeQuery(); //WE use use we DO expect something back!
+
+            ps.execute();
+
 
         }catch(SQLException e) {
             e.printStackTrace();
@@ -35,8 +34,7 @@ public class UserDao implements UserDaoInterface{
     @Override
     public Employee getEmployeeByUsername(String username) {
         String sql = "select * from project1.Employees a left join project1.Managers b using(user_id) where username = ?";
-        //select * from project1.Employees a left join project1.Managers b using(user_id) where username = ?;
-        //select * from ((select user_id,username,pass from Employees) union (select user_id,username,pass from Customers)) as dt where username = 'testEmployee1';
+
         Connection connection = ConnectionFactory.getConnection();
         Employee employee = null;
 
@@ -72,7 +70,7 @@ public class UserDao implements UserDaoInterface{
         try(PreparedStatement ps = connection.prepareStatement(sql)){
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
-                //long userID, String username, String password
+
 
                 Employee p = new Employee(
                         rs.getString("username"),
@@ -92,9 +90,8 @@ public class UserDao implements UserDaoInterface{
     @Override
     public boolean existsByName(String username) {
         String sql = "select username from ((select username from Employees) union (select username from Customers)) as dt where username = ?";
-        //(select username from Employees) intersect (select username from Customers);
+
         Connection connection = ConnectionFactory.getConnection();
-        Employee user = null;
         boolean exists = false;
 
         try(PreparedStatement ps = connection.prepareStatement(sql)){

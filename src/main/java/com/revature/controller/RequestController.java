@@ -4,13 +4,11 @@ import com.revature.models.Employee;
 import com.revature.models.Request;
 import com.revature.models.RequestStatus;
 import com.revature.service.RequestService;
-import com.revature.service.UserService;
 import io.javalin.http.Context;
-
-import java.util.ArrayList;
 
 public class RequestController {
     RequestService rService = new RequestService();
+
     public void request(Context ctx){
         Employee employee = ctx.sessionAttribute("Employee");
         Request request = ctx.bodyAsClass(Request.class);

@@ -1,8 +1,6 @@
-import java.util.List;
-import java.util.Scanner;
+package com.revature;
 
 import com.revature.controller.RequestMapper;
-import com.revature.utils.ConnectionFactory;
 import com.revature.utils.Monitoring;
 import io.javalin.plugin.metrics.MicrometerPlugin;
 

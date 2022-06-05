@@ -23,13 +23,13 @@ public class UserController {
         } else{
             ctx.status(401);
         }
-        //System.out.println(employee);
+
     }
 
     public void logout(Context ctx){
         //ctx.consumeSessionAttribute("Employee");
         ctx.req.getSession().invalidate();
-        //System.out.println("consumed");
+
     }
 
     public void getPendingRequestsForUser(Context ctx) {

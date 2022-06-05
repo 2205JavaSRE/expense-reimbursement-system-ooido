@@ -1,7 +1,6 @@
 package com.revature.utils;
 
 import io.micrometer.core.instrument.Counter;
-import io.micrometer.core.instrument.Gauge;
 import io.micrometer.core.instrument.binder.jvm.ClassLoaderMetrics;
 import io.micrometer.core.instrument.binder.jvm.JvmGcMetrics;
 import io.micrometer.core.instrument.binder.jvm.JvmMemoryMetrics;
@@ -64,7 +63,7 @@ public class Monitoring {
             .description("To track the number of calls for pending requests for user")
             .tag("purpose", "grafana")
             .register(registry);
-    private Counter getAllRequestsForUser = Counter
+    private Counter getAllRequestsForUserCounter = Counter
             .builder("path_request_to_/employee/requests/history")
             .description("To track the number of calls for request history for user")
             .tag("purpose", "grafana")
@@ -109,6 +108,6 @@ public class Monitoring {
         getAllPendingRequestsForUserCounter.increment();
     }
     public void getAllRequestsForUserCounter(){
-        getAllPendingRequestsForUserCounter.increment();
+        getAllRequestsForUserCounter.increment();
     }
 }
