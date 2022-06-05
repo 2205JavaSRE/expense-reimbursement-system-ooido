@@ -1,5 +1,6 @@
 package com.revature.controller;
 
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.revature.models.Employee;
 import com.revature.models.Request;
 import com.revature.models.RequestStatus;
@@ -11,57 +12,72 @@ public class RequestController {
 
     public void request(Context ctx){
         Employee employee = ctx.sessionAttribute("Employee");
-        Request request = ctx.bodyAsClass(Request.class);
-
-        if(employee!=null) {
-            request.setEmployeeID(employee.getEmployeeID());
-            rService.newRequest(request);
-            ctx.status(200);
-        } else{
-            ctx.status(401);
+        System.out.println("controller" + employee);
+        try {
+            if(employee!=null) {
+                Request request = ctx.bodyAsClass(Request.class);
+                System.out.println("controller" + request);
+                request.setEmployeeID(employee.getEmployeeID());
+                rService.newRequest(request);
+                ctx.status(200);
+            } else{
+                ctx.status(401);
+            }
+        }catch(Exception e){
+            ctx.status(400);
+            e.printStackTrace();
         }
+
     }
 
     public void requestByID(Context ctx){
         Employee employee = ctx.sessionAttribute("Employee");
-        int requestID = Integer.parseInt(ctx.pathParam("id"));
 
-
-        if(employee!=null && employee.isManager()) {
-            Request request = rService.getRequestByID(requestID);
-            if(request!=null){
-                ctx.status(200);
-                ctx.json(request);
+        try {
+            if (employee != null && employee.isManager()) {
+                int requestID = Integer.parseInt(ctx.pathParam("id"));
+                Request request = rService.getRequestByID(requestID);
+                if (request != null) {
+                    ctx.status(200);
+                    ctx.json(request);
+                } else {
+                    ctx.status(404);
+                }
             } else {
-                ctx.status(404);
+                ctx.status(401);
             }
-        } else{
-            ctx.status(401);
+        }catch(Exception e){
+            ctx.status(400);
         }
     }
 
     public void approveRequest(Context ctx){
         Employee employee = ctx.sessionAttribute("Employee");
-        int requestID = Integer.parseInt(ctx.pathParam("id"));
-
-        if(employee != null && employee.isManager()){
-            rService.setRequestStatus(requestID, RequestStatus.APPROVED);
-            ctx.status(200);
-        } else{
-            ctx.status(401);
+        try {
+            int requestID = Integer.parseInt(ctx.pathParam("id"));
+            if (employee != null && employee.isManager()) {
+                rService.setRequestStatus(requestID, RequestStatus.APPROVED);
+                ctx.status(200);
+            } else {
+                ctx.status(401);
+            }
+        } catch (Exception e){
+            ctx.status(400);
         }
-
     }
 
     public void denyRequest(Context ctx){
         Employee employee = ctx.sessionAttribute("Employee");
-        int requestID = Integer.parseInt(ctx.pathParam("id"));
-
-        if(employee != null && employee.isManager()){
-            rService.setRequestStatus(requestID, RequestStatus.DENIED);
-            ctx.status(200);
-        } else{
-            ctx.status(401);
+        try {
+            int requestID = Integer.parseInt(ctx.pathParam("id"));
+            if (employee != null && employee.isManager()) {
+                rService.setRequestStatus(requestID, RequestStatus.DENIED);
+                ctx.status(200);
+            } else {
+                ctx.status(401);
+            }
+        } catch (Exception e){
+            ctx.status(400);
         }
     }
 

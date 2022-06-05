@@ -27,6 +27,16 @@ public class RequestMapper {
             monitoring.requestCounter();
         });
 
+        app.get("/employee/requests", ctx -> { // get all pending requests for a user
+            uControl.getPendingRequestsForUser(ctx);
+            monitoring.getAllPendingRequestsForUserCounter();
+        });
+
+        app.get("/employee/requests/history", ctx -> { // get all denied/approved/pending requests for a user
+            uControl.getAllRequestsForUser(ctx);
+            monitoring.getAllRequestsForUserCounter();
+        });
+
         app.get("/request/{id}", ctx -> { // get particular request by id
             rControl.requestByID(ctx);
             monitoring.requestByIDCounter();
@@ -51,18 +61,6 @@ public class RequestMapper {
             rControl.getAllRequests(ctx);
             monitoring.getAllRequestsCounter();
         });
-
-        app.get("/employee/requests", ctx -> { // get all pending requests for a user
-            uControl.getPendingRequestsForUser(ctx);
-            monitoring.getAllPendingRequestsForUserCounter();
-        });
-
-        app.get("/employee/requests/history", ctx -> { // get all denied/approved/pending requests for a user
-            uControl.getAllRequestsForUser(ctx);
-            monitoring.getAllRequestsForUserCounter();
-        });
-
-
     }
 
 }

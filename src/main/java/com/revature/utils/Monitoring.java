@@ -14,14 +14,12 @@ import java.io.File;
 
 public class Monitoring {
 
-    public PrometheusMeterRegistry registry =
-            new PrometheusMeterRegistry(PrometheusConfig.DEFAULT);
+    public PrometheusMeterRegistry registry = new PrometheusMeterRegistry(PrometheusConfig.DEFAULT);
     private Counter loginCounter = Counter
             .builder("path_request_to_/login")
             .description("To track the number of logins")
             .tag("purpose", "grafana")
             .register(registry);
-
     private Counter logoutCounter = Counter
             .builder("path_request_to_/logout")
             .description("To track the number of logouts")
@@ -32,7 +30,6 @@ public class Monitoring {
             .description("To track the number of new reimbursement requests")
             .tag("purpose", "grafana")
             .register(registry);
-
     private Counter requestByIDCounter = Counter
             .builder("path_request_to_request/{id}")
             .description("To track the number of new reimbursement requests")
