@@ -27,14 +27,19 @@ public class RequestMapper {
             monitoring.requestCounter();
         });
 
-        app.get("/api/employee/requests", ctx -> { // get all pending requests for a user
-            uControl.getPendingRequestsForUser(ctx);
-            monitoring.getAllPendingRequestsForUserCounter();
+        app.get("/api/employee/requests/", ctx -> { // get all denied/approved/pending requests for a user
+            uControl.getAllRequestsForUser(ctx); //TODO: GET USER{APPROVED,DENIED,PENDING}
+            monitoring.getAllRequestsForUserCounter();
         });
 
-        app.get("/api/employee/requests/history", ctx -> { // get all denied/approved/pending requests for a user
-            uControl.getAllRequestsForUser(ctx);
-            monitoring.getAllRequestsForUserCounter();
+        app.get("/api/employee/requests/history", ctx -> { // get all denied/approved requests for a user
+            uControl.getPastRequestsForUser(ctx); //TODO: REMOVE PENDING
+            monitoring.getPastRequestsForUserCounter();
+        });
+
+        app.get("/api/employee/requests/pending", ctx -> { // get all pending requests for a user
+            uControl.getPendingRequestsForUser(ctx);
+            monitoring.getAllPendingRequestsForUserCounter();
         });
 
         app.get("/api/request/{id}", ctx -> { // get particular request by id
@@ -52,14 +57,19 @@ public class RequestMapper {
             monitoring.denyRequestCounter();
         });
 
-        app.get("/api/requests", ctx -> {  // get all pending requests
-            rControl.getPendingRequests(ctx);
-            monitoring.getAllPendingRequestsCounter();
+        app.get("/api/requests/", ctx -> {  // get all approved/denied/pending requests
+            rControl.getAllRequests(ctx); //TODO: GET ALL USERS{APPROVED,DENIED,PENDING}
+            monitoring.getAllRequestsCounter();
         });
 
-        app.get("/api/requests/history", ctx -> { // get all denied/approved/pending requests
-            rControl.getAllRequests(ctx);
-            monitoring.getAllRequestsCounter();
+        app.get("/api/requests/history", ctx -> { // get all denied/approved requests
+            rControl.getPastRequests(ctx); //TODO: REMOVE PENDING
+            monitoring.getPastRequestsCounter();
+        });
+
+        app.get("/api/requests/pending", ctx -> {  // get all pending requests
+            rControl.getPendingRequests(ctx);
+            monitoring.getAllPendingRequestsCounter();
         });
     }
 

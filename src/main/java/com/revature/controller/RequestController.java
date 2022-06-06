@@ -104,4 +104,15 @@ public class RequestController {
         }
 
     }
+
+    public void getPastRequests(Context ctx){
+        Employee employee = ctx.sessionAttribute("Employee");
+
+        if(employee != null && employee.isManager()){
+            ctx.json(rService.getPastRequests());
+            ctx.status(200);
+        } else{
+            ctx.status(401);
+        }
+    }
 }

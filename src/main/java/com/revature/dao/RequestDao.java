@@ -135,6 +135,34 @@ public class RequestDao implements RequestDaoInterface{
     }
 
     @Override
+    public ArrayList<Request> getPastRequestsByUserID(int userID) {
+        String sql = "select * from project1.Requests where user_id = ? and status = ? or status = ?";
+        Connection connection = ConnectionFactory.getConnection();
+
+        ArrayList<Request> requests = new ArrayList<>();
+
+        try(PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setInt(1, userID);
+            ps.setInt(2, RequestStatus.APPROVED.ordinal());
+            ps.setInt(3, RequestStatus.DENIED.ordinal());
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                int requestID = rs.getInt("request_id");
+                int employeeID = rs.getInt("user_id");
+                RequestStatus requestStatus = RequestStatus.fromOrdinal(rs.getInt("status"));
+                double amount = rs.getDouble("amount");
+                RequestType requestType = RequestType.fromOrdinal(rs.getInt("type"));
+                requests.add(new Request(requestID, employeeID, requestStatus, amount, requestType));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return requests;
+    }
+
+
+    @Override
     public ArrayList<Request> getAllRequests() {
         String sql = "select * from project1.Requests";
         Connection connection = ConnectionFactory.getConnection();
@@ -182,4 +210,31 @@ public class RequestDao implements RequestDaoInterface{
 
         return requests;
     }
+
+    @Override
+    public ArrayList<Request> getPastRequests() {
+        String sql = "select * from project1.Requests where status = ? or status = ?";
+        Connection connection = ConnectionFactory.getConnection();
+
+        ArrayList<Request> requests = new ArrayList<>();
+
+        try(PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setInt(1, RequestStatus.APPROVED.ordinal());
+            ps.setInt(2, RequestStatus.DENIED.ordinal());
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                int requestID = rs.getInt("request_id");
+                int employeeID = rs.getInt("user_id");
+                RequestStatus requestStatus = RequestStatus.fromOrdinal(rs.getInt("status"));
+                double amount = rs.getDouble("amount");
+                RequestType requestType = RequestType.fromOrdinal(rs.getInt("type"));
+                requests.add(new Request(requestID, employeeID, requestStatus, amount, requestType));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return requests;
+    }
+
 }

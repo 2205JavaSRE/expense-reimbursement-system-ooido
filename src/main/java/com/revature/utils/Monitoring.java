@@ -13,7 +13,6 @@ import io.micrometer.prometheus.PrometheusMeterRegistry;
 import java.io.File;
 
 public class Monitoring {
-
     public PrometheusMeterRegistry registry = new PrometheusMeterRegistry(PrometheusConfig.DEFAULT);
     private Counter loginCounter = Counter
             .builder("path_request_to_/login")
@@ -52,7 +51,12 @@ public class Monitoring {
             .register(registry);
     private Counter getAllRequestsCounter = Counter
             .builder("path_request_to_/request/history")
-            .description("To track the number of calls for all request history by a manager")
+            .description("To track the number of calls for all requests by a manager")
+            .tag("purpose", "grafana")
+            .register(registry);
+    private Counter getPastRequestsCounter = Counter
+            .builder("path_request_to_/request/history")
+            .description("To track the number of calls for request history by a manager")
             .tag("purpose", "grafana")
             .register(registry);
     private Counter getAllPendingRequestsForUserCounter = Counter
@@ -61,6 +65,12 @@ public class Monitoring {
             .tag("purpose", "grafana")
             .register(registry);
     private Counter getAllRequestsForUserCounter = Counter
+            .builder("path_request_to_/employee/requests/history")
+            .description("To track the number of calls for all requests for user")
+            .tag("purpose", "grafana")
+            .register(registry);
+
+    private Counter getPastRequestsForUserCounter = Counter
             .builder("path_request_to_/employee/requests/history")
             .description("To track the number of calls for request history for user")
             .tag("purpose", "grafana")
@@ -101,10 +111,16 @@ public class Monitoring {
     public void getAllRequestsCounter(){
         getAllRequestsCounter.increment();
     }
+    public void getPastRequestsCounter(){
+        getPastRequestsCounter.increment();
+    }
     public void getAllPendingRequestsForUserCounter(){
         getAllPendingRequestsForUserCounter.increment();
     }
     public void getAllRequestsForUserCounter(){
         getAllRequestsForUserCounter.increment();
+    }
+    public void getPastRequestsForUserCounter(){
+        getPastRequestsForUserCounter.increment();
     }
 }

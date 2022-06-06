@@ -28,4 +28,8 @@ public class UserService {
     public ArrayList<Request> getAllRequestsByUserID(Integer employeeID) {
         return rDao.getAllRequestsByUserID(employeeID);
     }
+
+    public ArrayList<Request> getPastRequestsByUserID(int employeeID) {
+        return rDao.getPastRequestsByUserID(employeeID);
+    }
 }

@@ -55,4 +55,15 @@ public class UserController {
             ctx.status(401);
         }
     }
+
+    public void getPastRequestsForUser(Context ctx) {
+        Employee employee = ctx.sessionAttribute("Employee");
+
+        if(employee != null){
+            ctx.json(uService.getPastRequestsByUserID(employee.getEmployeeID()));
+            ctx.status(200);
+        } else{
+            ctx.status(401);
+        }
+    }
 }
