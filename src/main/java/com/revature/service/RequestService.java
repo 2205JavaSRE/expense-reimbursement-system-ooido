@@ -19,13 +19,11 @@ public class RequestService {
     }
 
     public void setRequestStatus(int requestID, RequestStatus status){
-        //if valid update
         Request fullRequest = rDao.getRequestByID(requestID);
         fullRequest.setRequestStatus(status);
         rDao.updateRequestStatus(fullRequest);
     }
     public Request getRequestByID(int requestID){
-        //if manager else return null
         return rDao.getRequestByID(requestID);
     }
 

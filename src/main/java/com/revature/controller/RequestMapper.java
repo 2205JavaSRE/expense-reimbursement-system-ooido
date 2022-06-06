@@ -12,52 +12,52 @@ public class RequestMapper {
             ctx.result(monitoring.registry.scrape());
         });
 
-        app.post("/login", ctx -> { // log in, take credentials and verify
+        app.post("/api/login", ctx -> { // log in, take credentials and verify
             uControl.login(ctx);
             monitoring.loginCounter();
         });
 
-        app.post("/logout", ctx -> { // log out, clear session server side, invalidate cookie?
+        app.post("/api/logout", ctx -> { // log out, clear session server side, invalidate cookie?
             uControl.logout(ctx);
             monitoring.logoutCounter();
         });
 
-        app.post("/employee/request", ctx -> { //input for a new employee request
+        app.post("/api/employee/request", ctx -> { //input for a new employee request
             rControl.request(ctx);
             monitoring.requestCounter();
         });
 
-        app.get("/employee/requests", ctx -> { // get all pending requests for a user
+        app.get("/api/employee/requests", ctx -> { // get all pending requests for a user
             uControl.getPendingRequestsForUser(ctx);
             monitoring.getAllPendingRequestsForUserCounter();
         });
 
-        app.get("/employee/requests/history", ctx -> { // get all denied/approved/pending requests for a user
+        app.get("/api/employee/requests/history", ctx -> { // get all denied/approved/pending requests for a user
             uControl.getAllRequestsForUser(ctx);
             monitoring.getAllRequestsForUserCounter();
         });
 
-        app.get("/request/{id}", ctx -> { // get particular request by id
+        app.get("/api/request/{id}", ctx -> { // get particular request by id
             rControl.requestByID(ctx);
             monitoring.requestByIDCounter();
         });
 
-        app.patch("/request/approve/{id}", ctx -> { //approve request
+        app.patch("/api/request/approve/{id}", ctx -> { //approve request
             rControl.approveRequest(ctx);
             monitoring.approveRequestCounter();
         });
 
-        app.patch("/request/deny/{id}", ctx -> { //deny request
+        app.patch("/api/request/deny/{id}", ctx -> { //deny request
             rControl.denyRequest(ctx);
             monitoring.denyRequestCounter();
         });
 
-        app.get("/requests", ctx -> {  // get all pending requests
+        app.get("/api/requests", ctx -> {  // get all pending requests
             rControl.getPendingRequests(ctx);
             monitoring.getAllPendingRequestsCounter();
         });
 
-        app.get("/requests/history", ctx -> { // get all denied/approved/pending requests
+        app.get("/api/requests/history", ctx -> { // get all denied/approved/pending requests
             rControl.getAllRequests(ctx);
             monitoring.getAllRequestsCounter();
         });
