@@ -8,7 +8,7 @@ public class RequestMapper {
     private RequestController rControl= new RequestController();
     public void configureRoutes(Javalin app, Monitoring monitoring){
 
-        app.get("/testmetrics", ctx -> {
+        app.get("/metrics", ctx -> {
             ctx.result(monitoring.registry.scrape());
         });
 
