@@ -10,7 +10,6 @@ import io.javalin.Javalin;
 public class MainDriver {
     public static void main(String[] args) {
 
-        System.out.println("Main Start");
         Monitoring monitoring = new Monitoring();
 
         Javalin app = Javalin.create(

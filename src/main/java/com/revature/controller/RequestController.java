@@ -12,11 +12,11 @@ public class RequestController {
 
     public void request(Context ctx){
         Employee employee = ctx.sessionAttribute("Employee");
-        System.out.println("controller" + employee);
+
         try {
             if(employee!=null) {
                 Request request = ctx.bodyAsClass(Request.class);
-                System.out.println("controller" + request);
+
                 request.setEmployeeID(employee.getEmployeeID());
                 rService.newRequest(request);
                 ctx.status(200);

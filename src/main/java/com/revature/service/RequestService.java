@@ -35,5 +35,5 @@ public class RequestService {
         return rDao.getAllRequests();
     }
 
-    public ArrayList<Request> getPastRequests() { return rDao.getAllRequests();}
+    public ArrayList<Request> getPastRequests() { return rDao.getPastRequests();}
 }

@@ -28,12 +28,12 @@ public class RequestMapper {
         });
 
         app.get("/api/employee/requests/", ctx -> { // get all denied/approved/pending requests for a user
-            uControl.getAllRequestsForUser(ctx); //TODO: GET USER{APPROVED,DENIED,PENDING}
+            uControl.getAllRequestsForUser(ctx);
             monitoring.getAllRequestsForUserCounter();
         });
 
         app.get("/api/employee/requests/history", ctx -> { // get all denied/approved requests for a user
-            uControl.getPastRequestsForUser(ctx); //TODO: REMOVE PENDING
+            uControl.getPastRequestsForUser(ctx);
             monitoring.getPastRequestsForUserCounter();
         });
 
@@ -58,12 +58,12 @@ public class RequestMapper {
         });
 
         app.get("/api/requests/", ctx -> {  // get all approved/denied/pending requests
-            rControl.getAllRequests(ctx); //TODO: GET ALL USERS{APPROVED,DENIED,PENDING}
+            rControl.getAllRequests(ctx);
             monitoring.getAllRequestsCounter();
         });
 
         app.get("/api/requests/history", ctx -> { // get all denied/approved requests
-            rControl.getPastRequests(ctx); //TODO: REMOVE PENDING
+            rControl.getPastRequests(ctx);
             monitoring.getPastRequestsCounter();
         });
 
