@@ -136,7 +136,7 @@ public class RequestDao implements RequestDaoInterface{
 
     @Override
     public ArrayList<Request> getPastRequestsByUserID(int userID) {
-        String sql = "select * from project1.Requests where user_id = ? and status = ? or status = ?";
+        String sql = "select * from project1.Requests where user_id = ? and (status = ? or status = ?)";
         Connection connection = ConnectionFactory.getConnection();
 
         ArrayList<Request> requests = new ArrayList<>();
@@ -157,7 +157,7 @@ public class RequestDao implements RequestDaoInterface{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
+        System.out.println(requests);
         return requests;
     }
 
