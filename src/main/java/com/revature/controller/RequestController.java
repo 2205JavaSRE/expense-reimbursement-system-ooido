@@ -19,7 +19,7 @@ public class RequestController {
 
                 request.setEmployeeID(employee.getEmployeeID());
                 rService.newRequest(request);
-                ctx.status(200);
+                ctx.status(201);
             } else{
                 ctx.status(401);
             }

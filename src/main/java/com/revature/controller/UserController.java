@@ -17,7 +17,6 @@ public class UserController {
         Employee employee = ctx.bodyAsClass(Employee.class);
         Employee e2 = uService.authEmployee(employee.getUsername(), employee.getPassword());
         if(e2!=null){
-
             ctx.sessionAttribute("Employee", e2);
             ctx.status(200);
         } else{
@@ -27,7 +26,6 @@ public class UserController {
     }
 
     public void logout(Context ctx){
-        //ctx.consumeSessionAttribute("Employee");
         ctx.req.getSession().invalidate();
 
     }

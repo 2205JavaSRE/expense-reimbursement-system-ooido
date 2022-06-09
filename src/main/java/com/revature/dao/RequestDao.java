@@ -157,7 +157,6 @@ public class RequestDao implements RequestDaoInterface{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(requests);
         return requests;
     }
 
