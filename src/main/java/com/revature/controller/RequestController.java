@@ -25,7 +25,7 @@ public class RequestController {
             }
         }catch(Exception e){
             ctx.status(400);
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 
     }

@@ -45,12 +45,12 @@ public class Monitoring {
             .tag("purpose", "grafana")
             .register(registry);
     private Counter getAllPendingRequestsCounter = Counter
-            .builder("path_request_to_/requests")
+            .builder("path_request_to_/requests/pending")
             .description("To track the number of calls for all pending requests by a manager")
             .tag("purpose", "grafana")
             .register(registry);
     private Counter getAllRequestsCounter = Counter
-            .builder("path_request_to_/request/history")
+            .builder("path_request_to_/requests")
             .description("To track the number of calls for all requests by a manager")
             .tag("purpose", "grafana")
             .register(registry);
@@ -60,12 +60,12 @@ public class Monitoring {
             .tag("purpose", "grafana")
             .register(registry);
     private Counter getAllPendingRequestsForUserCounter = Counter
-            .builder("path_request_to_/employee/requests")
+            .builder("path_request_to_/employee/requests/pending")
             .description("To track the number of calls for pending requests for user")
             .tag("purpose", "grafana")
             .register(registry);
     private Counter getAllRequestsForUserCounter = Counter
-            .builder("path_request_to_/employee/requests/history")
+            .builder("path_request_to_/employee/requests/")
             .description("To track the number of calls for all requests for user")
             .tag("purpose", "grafana")
             .register(registry);
@@ -108,9 +108,7 @@ public class Monitoring {
     public void getAllPendingRequestsCounter(){
         getAllPendingRequestsCounter.increment();
     }
-    public void getAllRequestsCounter(){
-        getAllRequestsCounter.increment();
-    }
+    public void getAllRequestsCounter(){getAllRequestsCounter.increment();}
     public void getPastRequestsCounter(){
         getPastRequestsCounter.increment();
     }
