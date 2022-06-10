@@ -2,6 +2,9 @@ package com.revature.models;
 
 import java.util.ArrayList;
 
+/**
+ * The employee class. Includes a boolean field for finance managers.
+ */
 public class Employee {
     private String username;
     private String password;

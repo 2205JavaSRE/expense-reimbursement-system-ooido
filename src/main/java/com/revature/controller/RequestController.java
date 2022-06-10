@@ -10,6 +10,10 @@ import io.javalin.http.Context;
 public class RequestController {
     RequestService rService = new RequestService();
 
+    /**
+     * This method, for an authorized user, creates a new request, if it is not an invalid request.
+     * @param ctx
+     */
     public void request(Context ctx){
         Employee employee = ctx.sessionAttribute("Employee");
 
@@ -30,6 +34,10 @@ public class RequestController {
 
     }
 
+    /**
+     * This method, for an authorized manager, returns an http response with a request for the given ID parameter.
+     * @param ctx
+     */
     public void requestByID(Context ctx){
         Employee employee = ctx.sessionAttribute("Employee");
 
@@ -51,6 +59,10 @@ public class RequestController {
         }
     }
 
+    /**
+     * This method, for an authorized manager, approves a request with the given path parameter.
+     * @param ctx
+     */
     public void approveRequest(Context ctx){
         Employee employee = ctx.sessionAttribute("Employee");
         try {
@@ -66,6 +78,10 @@ public class RequestController {
         }
     }
 
+    /**
+     * This method, for an authorized manager, denies a request with the given path parameter.
+     * @param ctx
+     */
     public void denyRequest(Context ctx){
         Employee employee = ctx.sessionAttribute("Employee");
         try {
@@ -81,6 +97,10 @@ public class RequestController {
         }
     }
 
+    /**
+     * This method processes an http request, for an authorized manager, and returns an http response with all pending requests.
+     * @param ctx
+     */
     public void getPendingRequests(Context ctx){
         Employee employee = ctx.sessionAttribute("Employee");
 
@@ -93,6 +113,10 @@ public class RequestController {
 
     }
 
+    /**
+     * This method processes an http request, for an authorized manager, and returns an http response with all requests.
+     * @param ctx
+     */
     public void getAllRequests(Context ctx) {
         Employee employee = ctx.sessionAttribute("Employee");
 
@@ -104,7 +128,11 @@ public class RequestController {
         }
 
     }
-
+    /**
+     * This method processes an http request, for an authorized manager, and returns an http response with all denied
+     * or approved requests.
+     * @param ctx
+     */
     public void getPastRequests(Context ctx){
         Employee employee = ctx.sessionAttribute("Employee");
 
@@ -116,6 +144,11 @@ public class RequestController {
         }
     }
 
+    /**
+     * This method processes an http request, for an authorized manager, and returns an http response with all pending
+     * requests for with the pathparam ID.
+     * @param ctx
+     */
     public void getPendingRequestsByUser(Context ctx) {
         Employee employee = ctx.sessionAttribute("Employee");
 
@@ -127,7 +160,11 @@ public class RequestController {
         }
 
     }
-
+    /**
+     * This method processes an http request, for an authorized manager, and returns an http response with all requests
+     * for with the pathparam ID.
+     * @param ctx
+     */
     public void getAllRequestsByUser(Context ctx) {
         Employee employee = ctx.sessionAttribute("Employee");
 
@@ -138,7 +175,11 @@ public class RequestController {
             ctx.status(401);
         }
     }
-
+    /**
+     * This method processes an http request, for an authorized manager, and returns an http response with approve or denied
+     * requests for with the pathparam ID.
+     * @param ctx
+     */
     public void getPastRequestsByUser(Context ctx) {
         Employee employee = ctx.sessionAttribute("Employee");
 

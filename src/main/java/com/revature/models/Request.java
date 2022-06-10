@@ -1,5 +1,8 @@
 package com.revature.models;
 
+/**
+ * The reimbursement request class.
+ */
 public class Request {
     private int requestID;
     private int employeeID;

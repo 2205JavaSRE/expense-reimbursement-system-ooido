@@ -9,6 +9,10 @@ import io.javalin.Javalin;
 
 public class MainDriver {
 
+    /**
+     * The main function starts javalin with monitoring, and instantiates the request mapper.
+     *
+     */
     public static void main(String[] args) {
 
         Monitoring monitoring = new Monitoring();

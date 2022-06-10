@@ -6,6 +6,12 @@ import io.javalin.Javalin;
 public class RequestMapper {
     private UserController uControl = new UserController();
     private RequestController rControl= new RequestController();
+
+    /**
+     * This method configures all endpoints for the Expense Reimbursement System.
+     * @param app
+     * @param monitoring
+     */
     public void configureRoutes(Javalin app, Monitoring monitoring){
 
         app.get("/metrics", ctx -> {

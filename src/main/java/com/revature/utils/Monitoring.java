@@ -12,6 +12,9 @@ import io.micrometer.prometheus.PrometheusConfig;
 import io.micrometer.prometheus.PrometheusMeterRegistry;
 import java.io.File;
 
+/**
+ * The Monitoring class provides a number of counters and respective mutators for the endpoints.
+ */
 public class Monitoring {
     public PrometheusMeterRegistry registry = new PrometheusMeterRegistry(PrometheusConfig.DEFAULT);
     private Counter loginCounter = Counter
