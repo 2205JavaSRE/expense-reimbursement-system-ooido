@@ -59,6 +59,21 @@ public class Monitoring {
             .description("To track the number of calls for request history by a manager")
             .tag("purpose", "grafana")
             .register(registry);
+    private Counter getAllPendingRequestsByUserCounter = Counter
+            .builder("path_request_to_/requests/{id}/pending")
+            .description("To track the number of calls for a user's pending requests by a manager")
+            .tag("purpose", "grafana")
+            .register(registry);
+    private Counter getAllRequestsByUserCounter = Counter
+            .builder("path_request_to_/{id}/requests")
+            .description("To track the number of calls for a user's requests by a manager")
+            .tag("purpose", "grafana")
+            .register(registry);
+    private Counter getPastRequestsByUserCounter = Counter
+            .builder("path_request_to_/requests/{id}/history")
+            .description("To track the number of calls for a user's request history by a manager")
+            .tag("purpose", "grafana")
+            .register(registry);
     private Counter getAllPendingRequestsForUserCounter = Counter
             .builder("path_request_to_/employee/requests/pending")
             .description("To track the number of calls for pending requests for user")
@@ -111,6 +126,13 @@ public class Monitoring {
     public void getAllRequestsCounter(){getAllRequestsCounter.increment();}
     public void getPastRequestsCounter(){
         getPastRequestsCounter.increment();
+    }
+    public void getAllPendingRequestsByUserCounter(){
+        getAllPendingRequestsByUserCounter.increment();
+    }
+    public void getAllRequestsByUserCounter(){getAllRequestsByUserCounter.increment();}
+    public void getPastRequestsByUserCounter(){
+        getPastRequestsByUserCounter.increment();
     }
     public void getAllPendingRequestsForUserCounter(){
         getAllPendingRequestsForUserCounter.increment();

@@ -71,6 +71,21 @@ public class RequestMapper {
             rControl.getPendingRequests(ctx);
             monitoring.getAllPendingRequestsCounter();
         });
+
+        app.get("/api/requests/{id}", ctx -> {  // get all approved/denied/pending requests
+            rControl.getAllRequestsByUser(ctx);
+            monitoring.getAllRequestsByUserCounter();
+        });
+
+        app.get("/api/requests/{id}/history", ctx -> { // get all denied/approved requests
+            rControl.getPastRequestsByUser(ctx);
+            monitoring.getPastRequestsByUserCounter();
+        });
+
+        app.get("/api/requests/{id}/pending", ctx -> {  // get all pending requests
+            rControl.getPendingRequestsByUser(ctx);
+            monitoring.getAllPendingRequestsByUserCounter();
+        });
     }
 
 }

@@ -36,4 +36,16 @@ public class RequestService {
     }
 
     public ArrayList<Request> getPastRequests() { return rDao.getPastRequests();}
+
+    public ArrayList<Request> getPendingRequestsByUserID(Integer employeeID) {
+        return rDao.getPendingRequestsByUserID(employeeID);
+    }
+
+    public ArrayList<Request> getAllRequestsByUserID(Integer employeeID) {
+        return rDao.getAllRequestsByUserID(employeeID);
+    }
+
+    public ArrayList<Request> getPastRequestsByUserID(int employeeID) {
+        return rDao.getPastRequestsByUserID(employeeID);
+    }
 }

@@ -37,7 +37,7 @@ public class UserController {
         if(employee != null){
             ctx.json(uService.getPendingRequestsByUserID(employee.getEmployeeID()));
             ctx.status(200);
-        } else{
+        } else {
             ctx.status(401);
         }
 
@@ -49,7 +49,7 @@ public class UserController {
         if(employee != null){
             ctx.json(uService.getAllRequestsByUserID(employee.getEmployeeID()));
             ctx.status(200);
-        } else{
+        } else {
             ctx.status(401);
         }
     }
@@ -60,7 +60,7 @@ public class UserController {
         if(employee != null){
             ctx.json(uService.getPastRequestsByUserID(employee.getEmployeeID()));
             ctx.status(200);
-        } else{
+        }  else {
             ctx.status(401);
         }
     }
