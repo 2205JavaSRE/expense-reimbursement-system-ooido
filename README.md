@@ -1,7 +1,7 @@
 # Employee Reimbursement
 
 ## Description
-   An Employee Expensivce Reimbursement API. This application manages the process of reimbursing employees for expenses incurred while on company time. Employees can submit reimbursement requests, view their pending, denied, and approved requests. Finance managers can view all reimbursement requests, as well as approve or deny requests. The API implements a RESTful approach.
+   An Employee Expense Reimbursement API. This application manages the process of reimbursing employees for expenses incurred while on company time. Employees can submit reimbursement requests, view their pending, denied, and approved requests. Finance managers can view all reimbursement requests, as well as approve or deny requests. The API implements a RESTful approach.
 
 ## Technologies
 
