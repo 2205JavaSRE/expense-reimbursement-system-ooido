@@ -1,33 +1,7 @@
 # Employee Reimbursement
 
 ## Description
-
-   To build an Expense Reimbursement API, using Javalin, that is deployed on a remote server and ochestrate the application(s) using Docker and Docker Compose. Application monitoring will also be required to check the state of the server and the application. 
-
-   ### Expense Reimbursement Application requirements:
-
-   * The Expense Reimbursement System (ERS) will manage the process of reimbursing employees for expenses incurred while on company time. 
-   
-   * All employees in the company can log in and submit requests for reimbursement and view their past tickets and pending requests. Reimbursement tickets fall into 4 categories, LODGING, TRAVEL, FOOD, or OTHER. 
-   
-   * Finance managers can log in and view all reimbursement requests and past history for all employees in the company. Finance managers are authorized to approve and deny requests for expense reimbursement. 
-
-   The requirements for the application itself is left open ended to let you decide how to best implement the features. You are also allowed to create your own project (with a similar level of technical difficulty) but you must first reach out to your manager for approval. 
-
-## Purpose
-
-   We want to see that you can build an API using the technologies that have been taught so far in the program. In addition to that, we want to see that you are able to deploy the application onto a remote server in a containerized environment. 
-
-## Technical Requirements
-
-1. Functionality should reflect the below user stories.
-2. Data is stored in a database.
-3. Data Access is performed through the use of JDBC in a data layer consisting of Data Access Objects.
-4. The API is REST based, following as many of the RESTful constraints as appropriate
-5. The application is containerized and running on a docker compose network
-6. Applications and systems are monitored using Prometheus and Grafana 
-
-NOTE: Include any configuration files in this repository, make sure to avoid adding private information to this repository as it will be public.
+   An Employee Expensivce Reimbursement API. This application manages the process of reimbursing employees for expenses incurred while on company time. Employees can submit reimbursement requests, view their pending, denied, and approved requests. Finance managers can view all reimbursement requests, as well as approve or deny requests. The API implements a RESTful approach.
 
 ## Technologies
 
@@ -39,9 +13,8 @@ NOTE: Include any configuration files in this repository, make sure to avoid add
 6. Docker Compose 
 7. Prometheus 
 8. Grafana 
-9. Any 3rd Party Plugins as required
 
-## User Stories
+## Features
 * ERS
     * Rejects invalid requests
         * negative amounts
@@ -55,13 +28,42 @@ NOTE: Include any configuration files in this repository, make sure to avoid add
       amount
   * View past requests
   * View pending requests
+  * View all requests
 
 * F. Managers
   * login
   * logout
-  * view all (active?) reimbursement requests
-  * view request history for all employees (including pending?)
+  * view all reimbursement requests by status
+  * view request history for all employees by status
   * view particular user history
   * approve a request
   * deny a request
-	
+
+* Possible improvements:
+  * Switch authentication to OAuth or API keys
+  * Implement email alerts
+  * Implement a web front end that accesses this API
+
+
+## Getting Started
+
+(include git clone command)
+(include all environment setup steps)
+
+> Be sure to include BOTH Windows and Unix command  
+> Be sure to mention if the commands only work on a specific platform (eg. AWS, GCP)
+
+- All the `code` required to get started
+- Images of what it should look like
+
+## Usage
+
+> Here, you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
+
+## Contributors
+
+> Here list the people who have contributed to this project. (ignore this section, if its a solo project)
+
+## License
+
+This project uses the following license: [<license_name>](<link>).
