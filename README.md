@@ -48,9 +48,13 @@
 ## Getting Started
 
 Install git.
+
 Install docker.
+
 git clone https://github.com/2205JavaSRE/expense-reimbursement-system-ooido.git
+
 docker build . -t ers:v1
+
 docker compose up -d
 
 ## Usage
